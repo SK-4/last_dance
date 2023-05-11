@@ -27,8 +27,13 @@ def generate_password(length):
     return password
 
 def main():
+    st.set_page_config(page_title="Password Strength Checker and Generator", page_icon=":lock:", layout="wide")
     st.title("Password Strength Checker and Generator")
-    password = st.text_input("Enter your password:", type="password")
+    st.write("Use this app to check the strength of your password and generate a strong one if needed.")
+    
+    # Password strength checker
+    st.header("Password Strength Checker")
+    password = st.text_input("Enter your password:", type="password", key="password_input")
     if password:
         strength = password_strength(password)
         st.write(f"Password Strength Score: {strength}")
@@ -40,10 +45,12 @@ def main():
         with open("passwords.txt", "a") as file:
             file.write(f"Password: {password}, Score: {strength}\n")
     
-    st.subheader("Generate Password")
-    password_length = st.slider("Select password length", 8, 64, 12)
+    # Password generator
+    st.header("Password Generator")
+    password_length = st.slider("Select password length", 8, 64, 12, key="password_length")
     generated_password = generate_password(password_length)
     st.write(f"Generated Password: {generated_password}")
+    st.write("Use this password at your own risk!")
     
 if __name__ == "__main__":
     main()
