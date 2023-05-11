@@ -41,19 +41,19 @@ def main():
     start = time.time()
     C_serial = serial_multiply(A, B)
     end = time.time()
-    st.write("Serial multiplication took {:.4f} seconds".format(end - start) + f" result is {C_serial}")
+    st.write("Serial multiplication took {:.4f} seconds".format(end - start))
 
     # Multiply matrices in parallel
     start = time.time()
     C_parallel = parallel_multiply(A, B)
     end = time.time()
-    st.write("Parallel multiplication took {:.4f} seconds".format(end - start)+f"and result is {C_parallel}")
+    st.write("Parallel multiplication took {:.4f} seconds".format(end - start))
 
     # Check if the results match
     if np.allclose(C_serial, C_parallel):
-        st.write("The results of serial and parallel multiplication are the same")
+        st.success("The results of serial and parallel multiplication are the same")
     else:
-        st.write("The results of serial and parallel multiplication are different")
+        st.failure("The results of serial and parallel multiplication are different")
 
 if __name__ == '__main__':
     main()
