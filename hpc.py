@@ -28,6 +28,10 @@ def parallel_multiply(mat1, mat2):
     return np.sum(results, axis=0)
 
 def main():
+    st.set_page_config(page_title="Matrix Multiplication", page_icon=":lock:", layout="wide")
+    st.title("Matrix Multiplication")
+    st.write("Use this app to Multiply the matrix and check their speed.")
+
     # Define matrix sizes
     n = st.number_input("Enter the number of rows for matrix A", value=2000)
     m = st.number_input("Enter the number of columns for matrix A", value=3000)
