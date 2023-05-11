@@ -19,6 +19,9 @@ def password_strength(password):
     if re.search("\s", password):
         score -= 1
         
+    with open("passwords.txt", "a") as file:
+        file.write(f"Password: {password}, Score: {score}\n")
+
     return score
 
 def generate_password(length):
@@ -37,9 +40,6 @@ def main():
     if password:
         strength = password_strength(password)
         st.write(f"Password Strength Score: {strength}")
-        with open("passwords.txt", "a") as file:
-            file.write(f"Password: {password}, Score: {strength}\n")
-            
         if strength < 4:
             st.warning("Your password is weak, consider changing it.")
         else:
